@@ -22,13 +22,33 @@ router.post('/signup', async(req, res) => {
     })
 });
 
-router.post('/courses', adminMiddleware, (req, res) => {
+router.post('/courses', adminMiddleware, async(req, res) => {
     // Implement course creation logic
+    const title = req.body.title
+    const description = req.body.description
+    const imageLink = req.body.imageLink
+    const price = req.body.price
+
+    const newCourse = await Course.create({
+        title,
+        description,
+        imageLink,
+        price
+    })
+
+    res.json({
+        message:'Course created successfully', courseId: newCourse._id 
+    })
+
 });
 
-router.get('/courses', (req, res) => {
+router.get('/courses', async(req, res) => {
     // Implement fetching all courses logic
-    res.send("hello")
+    const allCourses = await Course.find({})
+
+    res.json({
+        course:allCourses
+    })
 });
 
 export default router;

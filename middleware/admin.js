@@ -1,5 +1,5 @@
-import Admin from "../db/index.js"
-
+import module from "../db/index.js"
+const {Admin} = module
 // Middleware for handling auth
 function adminMiddleware(req, res, next) {
     // Implement admin auth logic

@@ -1,4 +1,5 @@
-import User from "../db/index.js"
+import module from "../db/index.js"
+const {User} = module
 
 function userMiddleware(req, res, next) {
     // Implement user auth logic
